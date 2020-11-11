@@ -70,7 +70,7 @@
 									</a>	
 								</h3>
 								<h2 class="site-description">
-									<?php bloginfo( 'description' ); ?>
+									<?php bloginfo( 'description' ); ?>header-top-right
 								</h2>
 							<?php endif; ?>
                                 <?php if (get_option('tmpmela_logo_image') == '' && get_option('tmpmela_logo_image_alt') == '') : ?>
@@ -103,115 +103,7 @@
 								
 							</div>					 			
 					</div>
-					<div class="header-top-right">
-						<?php if ( !has_nav_menu('header-menu') ): ?>
-						    <div class="login-out">
-                                <?php $logout_url = '';
-                                if (is_user_logged_in()) {
-                                    $myaccount_page_id = get_option('woocommerce_myaccount_page_id');
-                                    if ($myaccount_page_id) {
-                                        $logout_url = wp_logout_url(get_permalink($myaccount_page_id));
-                                        if (get_option('woocommerce_force_ssl_checkout') == 'yes')
-                                            if (is_ssl()) {
-                                                $logout_url = str_replace('http:', 'https:', $logout_url);
-                                            }
-                                    } ?>
-                                    <?php if ($myaccount_page_id): ?>
-                                        <a class="logout" href="<?php echo esc_url($logout_url); ?>">
-                                            <?php echo esc_html_e('Logout', 'shopinia'); ?>
-                                        </a>
-                                    <?php endif; ?>
-                                <?php } else {
-                                    $myaccount_page_id = get_option('woocommerce_myaccount_page_id'); ?>
-                                    <?php if ($myaccount_page_id): ?>
-                                        <a class="login" href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>">
-                                            <?php echo esc_html_e('Login', 'shopinia'); ?>
-                                        </a>
-                                    <?php endif; ?>
-                                <?php } ?>
-                            </div>
-                        <?php endif; ?>
-                        <?php if ( has_nav_menu('header-menu') ): ?>
-						<div class="topbar-link">
-							<div class="topbar-link-toggle"></div>
-							<div class="account-block">
-								<span class="account-label">
-									<?php
-									if ( is_user_logged_in() ) {
-									  echo esc_html_e('Sign Out','shopinia'); 
-									}
-									else {
-									echo esc_html_e('Sign In','shopinia');
-									 } ?>
-								</span>
-								<span class="account-contents">
-									<?php echo esc_html_e('My Account','shopinia'); ?>
-								</span>
-							</div>
-							
-								<div class="topbar-link-wrapper">   
-									<div class="header-menu-links">	
-											<?php 
-											// Woo commerce Header Cart
-											$tmpmela_header_menu =array(
-											'menu' => esc_html__('TM Header Top Links','shopinia'),
-											'depth'=> 1,
-											'echo' => false,
-											'menu_class'      => 'header-menu', 
-											'container'       => '', 
-											'container_class' => '', 
-											'theme_location' => 'header-menu'
-											);
-											echo wp_nav_menu($tmpmela_header_menu);				    
-											?>
-											
-											<?php
-											$logout_url = '';
-											if ( is_user_logged_in() ) {
-												$myaccount_page_id = get_option( 'woocommerce_myaccount_page_id' ); 
-												if ( $myaccount_page_id ) { 
-												$logout_url = wp_logout_url( get_permalink( $myaccount_page_id ) ); 
-												if ( get_option( 'woocommerce_force_ssl_checkout' ) == 'yes' )
-												if (is_ssl()) {
-												$logout_url = str_replace( 'http:', 'https:', $logout_url );
-												}
-												} ?>
-												<a href="<?php echo esc_url($logout_url); ?>" ><?php echo esc_html_e('Logout','shopinia'); ?></a>
-												<?php }
-												else { ?>
-												<a href="<?php echo  get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"><?php echo esc_html_e('User Login','shopinia'); ?></a>
-											<?php } ?>  
-									</div>			
-								</div>
-						</div>
-						<?php endif; ?>
-						<div class="header-right">
-							<?php if ( in_array( 'yith-woocommerce-compare/init.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ): ?>	
-							<?php  tmpmela_add_to_compare_in_menu();  ?>
-							<?php endif ?>	
-							<?php if ( in_array( 'yith-woocommerce-wishlist/init.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ): ?>	
-							 	 <?php  tmpmela_add_to_wishlist_in_menu();  ?>	
-							<?php endif ?>
-						<?php 
-								// Woo commerce Header Cart
-								if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) && is_active_sidebar('header-widget') ) : ?>
-								<div class="header-cart headercart-block">
-								<div class="cart togg">
-											<?php global $woocommerce;
-											ob_start();?>						
-											<div class="shopping_cart tog" title="<?php esc_attr_e('View your shopping cart', 'shopinia'); ?>">
-													<a class="cart-contents" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php esc_attr_e('View your shopping cart', 'shopinia'); ?>">
-														<div class="cart-label"><?php echo esc_html_e('My Bag','shopinia');?></div>
-														<span class="cart-qty"><?php echo sprintf(_n('%d', '%d', $woocommerce->cart->cart_contents_count, 'shopinia'), $woocommerce->cart->cart_contents_count);?></span>
-													</a>
-											</div>	
-											<?php global $woocommerce; ?>
-											<?php tmpmela_get_widget('header-widget'); ?>		
-								</div>
-							</div>
-								<?php endif; ?>	
-								</div>
-				</div>
+
 				<?php if (is_active_sidebar('header-search')) : ?>
 					<div class="header-search">
 						<a class="header-toggle"><?php echo esc_html_e('Search','shopinia'); ?></a>
