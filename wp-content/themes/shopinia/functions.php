@@ -6,6 +6,41 @@
  *
  * @since TemplateMela 1.0
  */
+
+/* Изменить строку на всем сайте */
+function tb_change_text( $translated_text ) {
+	if ( $translated_text == 'View More Products' ) {
+		$translated_text = 'Показать больше';
+	}
+	return $translated_text;
+}
+add_filter( 'gettext', 'tb_change_text', 20 );
+
+
+add_filter( 'woocommerce_currencies', 'add_my_currency' );
+
+function add_my_currency( $currencies ) {
+
+     $currencies['UAH'] = __( 'Українська гривня', 'woocommerce' );
+
+     return $currencies;
+
+}
+
+add_filter('woocommerce_currency_symbol', 'add_my_currency_symbol', 10, 2);
+
+function add_my_currency_symbol( $currency_symbol, $currency ) {
+
+     switch( $currency ) {
+
+         case 'UAH': $currency_symbol = 'грн'; break;
+
+     }
+
+     return $currency_symbol;
+
+}
+
 if ( ! isset( $content_width ) ) {
 	$content_width = 1400;
 }

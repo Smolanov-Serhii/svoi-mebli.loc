@@ -116,13 +116,17 @@
 			 	<div class="header-bottom header-fix">
 				  <div class="header-botton-inner">
 					<div class="theme-container">
-					<nav id="site-navigation" class="navigation-bar main-navigation">																				
+					<nav id="site-navigation" class="navigation-bar main-navigation">
 					<a class="screen-reader-text skip-link" href="#content" title="<?php esc_attr_e( 'Skip to content', 'shopinia' ); ?>"><?php esc_html_e( 'Skip to content', 'shopinia' ); ?></a>
 						<div class="mega-menu">
-							<?php wp_nav_menu( array( 'theme_location' => 'primary','menu_class' => 'mega' ) ); ?>		
-						</div>	
+							<?php wp_nav_menu( array( 'theme_location' => 'primary','menu_class' => 'mega' ) ); ?>
+						</div>
+                        <div class="gtranslate">
+                            <?php echo do_shortcode('[gtranslate]'); ?>
+                        </div>
 					</nav>
 					<nav class="mobile-navigation">	
+					<nav class="mobile-navigation">
 					<h3 class="menu-toggle"><?php esc_html_e( 'Menu', 'shopinia' ); ?></h3>
 						<div class="mobile-menu">	
 							<span class="close-menu"></span>	
@@ -131,7 +135,7 @@
 					</nav>
 					<?php if ( is_active_sidebar( 'documentation-link' ) ) : ?>
 						<?php dynamic_sidebar( 'documentation-link' ); ?>
-					<?php endif; ?>	
+					<?php endif; ?>
 				</div>	
 				</div>
 				</div>
